@@ -44,6 +44,9 @@ def listen():
     try:
         print("Recognizing...")
         query = r.recognize_google(audio, language='en-in')
+        query = query.lower()
+        if 'jarvis' in query:
+            query = query.replace('jarvis', '')
         print(f"You said: {query}\n")
 
     except Exception as e:
@@ -54,7 +57,7 @@ def listen():
 
 def run_jarvis():
     while True:
-        query = listen().lower()
+        query = listen()
         if 'play' in query:
             song = query.replace('play', '')
             talk('playing ' + song)
@@ -82,6 +85,8 @@ def run_jarvis():
         elif 'bye' in query:
             talk('Bye Bye')
             exit()
+        else:
+            print('Please say the command again.')
 
 
 def main():
