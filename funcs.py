@@ -44,7 +44,7 @@ def listen():
     try:
         print("Recognizing...")
         query = r.recognize_google(audio, language='en-in')
-        print(f"User said: {query}\n")
+        print(f"You said: {query}\n")
 
     except Exception as e:
         print("Say that again please...")
@@ -75,6 +75,9 @@ def run_jarvis():
         elif 'time' in query:
             strTime = datetime.datetime.now().strftime("%H:%M:%S")
             talk(f"The Time Is {strTime}")
+
+        elif 'joke' in query:
+            talk(pyjokes.get_joke())
 
         elif 'bye' in query:
             talk('Bye Bye')
